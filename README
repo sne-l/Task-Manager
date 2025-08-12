@@ -1,0 +1,54 @@
+# ToDo Task Manager - Firebase Web App
+
+This is a simple ToDo Task Manager web application built with Firebase for authentication and real-time database storage. Users can sign up, log in, add tasks, view their tasks, and delete tasks. The app features a responsive UI styled with Bootstrap and custom CSS.
+
+## Folder Contents
+
+- [`indextodo.html`](Todo/indextodo.html): Main HTML file for the ToDo Task Manager app. Handles UI, authentication, and CRUD operations for tasks.
+- [`style.css`](Todo/style.css): Custom styles for the ToDo app, including layout and background.
+- [`bootstrap.min.css`](Todo/bootstrap.min.css): Bootstrap CSS for responsive design.
+- [`todoimg.jpg`](Todo/todoimg.jpg): Background image used in the app.
+- [`doc`](Todo/doc): HTML snippet for displaying logs (not used directly in the main app).
+
+## Features
+
+- **User Authentication:** Sign up and log in using email and password (Firebase Auth).
+- **Task Management:** Add, view, and delete tasks. Each user sees only their own tasks.
+- **Realtime Database:** Tasks are stored and synced using Firebase Realtime Database.
+- **Responsive UI:** Built with Bootstrap and custom styles.
+
+## Getting Started
+
+1. **Configure Firebase**
+   - Open [`indextodo.html`](Todo/indextodo.html).
+   - Replace the placeholder values in the `firebaseConfig` object with your Firebase project credentials:
+     ```js
+     const firebaseConfig = {
+       apiKey: "<Enter_the_API_Key>",
+       authDomain: "<Enter_the_Auth_Domain>",
+       projectId: "<Enter_the_Project_ID>",
+       storageBucket: "<Enter_the_Storage_Bucket>",
+       messagingSenderId: "<Enter_the_Messaging_Sender_ID>",
+       appId: "<Enter_the_App_ID>"
+     };
+     ```
+
+2. **Run the App**
+   - Open [`indextodo.html`](Todo/indextodo.html) in your browser.
+
+## Usage
+
+- **Sign Up:** Enter your name, email, and password to create an account.
+- **Log In:** Enter your name, email, and password to log in.
+- **Add Task:** Enter the date, time, and task description, then click "Add".
+- **Delete Task:** Enter the task name and click "Delete" to remove it.
+- **View Tasks:** After logging in, your tasks will be displayed in a table.
+
+## Styling
+
+- The app uses [`style.css`](Todo/style.css) for custom styles and [`bootstrap.min.css`](Todo/bootstrap.min.css) for layout and components.
+- The background image [`todoimg.jpg`](Todo/todoimg.jpg) is used for visual enhancement.
+
+## License
+
+This project is for educational

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    <div class="container">
+        <div id="homeblock" class="trans" >
+            <br><br><br><br><br>
+            <center class="boldbox">
+                <h1 style="font-weight: bold; color:black; text-align: center;">ToDo Task Manager</h1>
+                <br><br>
+                <button type="button" class="btn btn-outline-info btn-lg" id="signuphomebtn" style="font-weight: bold; color:black;">Sign Up</button>
+                <button type="button" class="btn btn-outline-info btn-lg" id="loginhomebtn" style="font-weight: bold; color:black;">Log In</button><br><br>
+            </center>
+        </div>
+
+        <div id="signupblock" style="display: none;" class="trans">
+            <br><br><br>
+            <center class="boldbox">
+                <br>
+                <h1 style="font-weight: bold; color:black; text-align: center;">ToDo Task Manager</h1>
+                <input type="text" placeholder="Enter Name" id="nameinp" style="font-weight: bold; color:black; text-align: center;"><br><br>
+                <input type="email" placeholder="Enter Email" id="emailinp" style="font-weight: bold; color:black; text-align: center;"><br><br>
+                <input type="password" id="passinp" placeholder="Enter password" style="font-weight: bold; color:black; text-align: center;"><br><br>
+                <button type="button" class="btn btn-outline-success btn-lg"       id="signupmainbtn" style="font-weight: bold; color:black;">Sign Up</button>
+            </center>
+        </div>
+
+        <div id="loginblock" style="display:none;" class="trans">
+            <br><br><br>
+            <center class="boldbox">
+                <br>
+                <h1 style="font-weight: bold; color:black; text-align: center;">ToDo Task Manager</h1>
+                <input type="text" placeholder="Enter Name" id="nameinplog" style="font-weight: bold; color:black; text-align: center;"><br><br>
+                <input type="email" placeholder="Enter Email" id="loginemailinp" style="font-weight: bold; color:black; text-align: center;"><br><br>
+                <input type="password" id="loginpassinp" placeholder="Enter password" style="font-weight: bold; color:black; text-align: center;"><br><br>
+                <button type="button" class="btn btn-outline-success btn-lg"       id="loginmainbtn" style="font-weight: bold; color:black;">Log In</button>
+            </center>
+        </div>
+
+        <div class="diaplayLog" id="logged" style="display:none;" class="transe">
+            <br><br>
+            <center>
+            <h1>ToDo Task Manager</h1>
+            <h1 class="display-6 mt-3">View</h1>
+            <table class="table table-primary">
+                <thead style="text-align: center;">
+                    <th>Data</th>
+                    <th>Time</th>
+                    <th>Task</th>
+                </thead>
+                <tbody id="tbodyid" style="text-align:center ;">
+            
+                </tbody>
+            </table>
+            </center><br><br>
+            <h1 class="display-6 mt-3">Add</h1>
+
+            <input type="text" id="dateInp" placeholder="Enter the date" required class="form-control w-25" style="display: inline-block;">
+
+            <input type="text" id="timeInp" placeholder="Enter the time" required class="form-control w-25" style="display: inline-block;">
+
+            <input type="text" id="taskInp" placeholder="Enter the Task" required class="form-control w-25" style="display: inline-block;">
+
+            <button type="button" class="btn btn-outline-success" id="addmainbtn" required class="form-control w-25" style="margin-left:20px ;">Add</button>
+
+            <button type="button" class="btn btn-outline-danger" id="delmainbtn" required class="form-control w-25" style="margin-left:20px ;">Delete</button>
+
+        </div>
+    
+    </div>
+</body>
+</html>
+
+<script type="module">
+    
+    let tbody = document.getElementById('tbodyid');
+    let gEle ='';
+
+    function addToTable(date,time,task){
+    //to create the html tags
+     let trow = document.createElement('tr');
+     let td1 = document.createElement('td');
+     let td2 = document.createElement('td');
+     let td3 = document.createElement('td');
+
+     td1.innerHTML = date;
+     td2.innerHTML = time;
+     td3.innerHTML = task;
+     
+      trow.appendChild(td1);
+      trow.appendChild(td2);
+      trow.appendChild(td3);
+
+      tbody.appendChild(trow);
+    }
+
+    function addDataToTable(TheTask){    
+        tbody.innerHTML = "";
+        TheTask.forEach(element =>{  
+            if(element.name==gEle){
+            addToTable(element.date, element.time, element.task);}
+        });
+    }
+
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-app.js";
+    import { getDatabase,set,ref,onValue,child ,remove } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-database.js";
+    import { getAuth,createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "<Enter_the_API_Key>",
+    authDomain: "<Enter_the_Auth_Domain>",
+    projectId: "<Enter_the_Project_ID>",
+    storageBucket: "<Enter_the_Storage_Bucket>",
+    messagingSenderId: "<Enter_the_Messaging_Sender_ID>",
+    appId: "<Enter_the_App_ID>"
+  };  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database =getDatabase(app);
+    const auth =getAuth();
+
+    function getRealTimeData(){
+        var dbRef = ref(database, "task");
+        onValue(dbRef,(snapshot)=>{
+            var taskarr = [];
+            snapshot.forEach(childSnapshot =>{
+                taskarr.push(childSnapshot.val());
+            });
+            addDataToTable(taskarr);
+        });
+    }
+
+    // window.onload = getRealTimeData;
+
+    signuphomebtn.addEventListener('click',(e)=>{
+        document.getElementById('homeblock').style.display='none';
+        document.getElementById('signupblock').style.display='block';
+    });
+
+    loginhomebtn.addEventListener('click',(e)=>{
+        document.getElementById('homeblock').style.display='none';
+        document.getElementById('loginblock').style.display='block';
+    });
+
+    signupmainbtn.addEventListener('click',(e)=>{
+        var name=document.getElementById('nameinp').value;
+        var email=document.getElementById('emailinp').value;
+        var password=document.getElementById('passinp').value;
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+         // Signed in 
+            const user = userCredential.user;
+            set(ref(database,'users/' + user.uid),{
+                email:email,
+                password:password
+            }).then(()=>{
+                alert("User Registered Successfully!!");
+                set(ref(database,'userstab/' + name),{
+                name:name,
+                email:email,
+                password:password     
+            }).then(()=>{
+                // alert("Scheduled successfully");
+            }).catch((error)=>{
+                alert(error);
+            });//end of set function 
+            }).catch((error)=>{
+                alert(error);
+            });
+        });  
+    });
+
+    loginmainbtn.addEventListener('click',(e)=>{
+        var name=document.getElementById('nameinplog').value;
+        var email=document.getElementById('loginemailinp').value;
+        var password=document.getElementById('loginpassinp').value;
+
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+         // Signed in 
+        const user = userCredential.user;
+         alert("Login successfully");
+         document.getElementById('loginblock').style.display='none';
+         document.getElementById('logged').style.display='block';
+         gEle=gEle+name;
+         getRealTimeData();
+        })
+        .catch((error) => {
+         const errorCode = error.code;
+         const errorMessage = error.message;
+         alert(errorMessage);
+        });
+    });
+
+    addmainbtn.addEventListener('click',(e)=>{
+        var name=gEle;
+        var date = document.getElementById('dateInp').value;
+        var time = document.getElementById('timeInp').value;
+        var task = document.getElementById('taskInp').value;
+
+        //set function for task
+        set(ref(database,'task/'+task),{
+               name:name,
+               date:date,
+               time:time,
+               task:task
+        }).then(()=>{
+                alert("Scheduled successfully");
+            }).catch((error)=>{
+                alert(error);
+            });//end of set function
+        });    
+
+
+        delmainbtn.addEventListener('click',(e)=>{
+
+        var name=gEle;
+        var date = document.getElementById('dateInp').value;
+        var time = document.getElementById('timeInp').value;
+        var task = document.getElementById('taskInp').value;
+        remove(ref(database,'task/'+task));
+        alert("Data deleted successfully!!");
+    });
+    
+  </script>

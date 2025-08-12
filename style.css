@@ -1,0 +1,48 @@
+*{
+    padding: 0px;
+    margin:0px;
+    box-sizing: border-box;
+}
+.trans{
+    background-image: url('todoimg.jpg');
+    background-repeat: no-repeat;
+}
+.boldbox{
+    margin-left: 30%;
+    margin-right: 30%;
+    background-size: 100%;
+    background-color: azure;
+    border: 1px solid black;
+    opacity: 0.9;
+    padding: 25px;
+}
+
+#homeblock{
+    width: 100%;
+    height: 100vh;
+    background-size: 100% 100%;
+    background-color:rgb(178, 145, 151);
+
+}
+
+#signupblock{
+    width: 100%;
+    height: 100vh;
+    background-size: 100% 100%;
+    background-color: rgb(101, 61, 9);
+
+}
+#loginblock{
+    width: 100%;
+    height: 100vh;
+    background-size: 100% 100%;
+    background-color: rgb(101, 61, 9);
+
+}
+
+#displayLog{
+    width: 100%;
+    height: 100vh;
+    background-size: 100% 100%;
+    background-color: rgb(101, 61, 9);
+}
