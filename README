@@ -1,6 +1,7 @@
 # ToDo Task Manager - Firebase Web App
 
-This is a simple ToDo Task Manager web application built with Firebase for authentication and real-time database storage. Users can sign up, log in, add tasks, view their tasks, and delete tasks. The app features a responsive UI styled with Bootstrap and custom CSS.
+This is a simple ToDo Task Manager web application built with Firebase for authentication and real-time database storage. Users can sign up, 
+log in, add tasks, view their tasks, and delete tasks. The app features a responsive UI styled with Bootstrap and custom CSS.
 
 ## Folder Contents
 
