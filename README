@@ -5,11 +5,10 @@ log in, add tasks, view their tasks, and delete tasks. The app features a respon
 
 ## Folder Contents
 
-- [`indextodo.html`](Todo/indextodo.html): Main HTML file for the ToDo Task Manager app. Handles UI, authentication, and CRUD operations for tasks.
-- [`style.css`](Todo/style.css): Custom styles for the ToDo app, including layout and background.
-- [`bootstrap.min.css`](Todo/bootstrap.min.css): Bootstrap CSS for responsive design.
-- [`todoimg.jpg`](Todo/todoimg.jpg): Background image used in the app.
-- [`doc`](Todo/doc): HTML snippet for displaying logs (not used directly in the main app).
+- [`index.html`](index.html): Main HTML file for the ToDo Task Manager app. Handles UI, authentication, and CRUD operations for tasks.
+- [`style.css`](style.css): Custom styles for the ToDo app, including layout and background.
+- [`bootstrap.min.css`](bootstrap.min.css): Bootstrap CSS for responsive design.
+- [`todoimg.jpg`](todoimg.jpg): Background image used in the app.
 
 ## Features
 
@@ -21,7 +20,7 @@ log in, add tasks, view their tasks, and delete tasks. The app features a respon
 ## Getting Started
 
 1. **Configure Firebase**
-   - Open [`indextodo.html`](Todo/indextodo.html).
+   - Open [`index.html`](index.html).
    - Replace the placeholder values in the `firebaseConfig` object with your Firebase project credentials:
      ```js
      const firebaseConfig = {
@@ -35,7 +34,7 @@ log in, add tasks, view their tasks, and delete tasks. The app features a respon
      ```
 
 2. **Run the App**
-   - Open [`indextodo.html`](Todo/indextodo.html) in your browser.
+   - Open [`index.html`](index.html) in your browser.
 
 ## Usage
 
@@ -47,8 +46,8 @@ log in, add tasks, view their tasks, and delete tasks. The app features a respon
 
 ## Styling
 
-- The app uses [`style.css`](Todo/style.css) for custom styles and [`bootstrap.min.css`](Todo/bootstrap.min.css) for layout and components.
-- The background image [`todoimg.jpg`](Todo/todoimg.jpg) is used for visual enhancement.
+- The app uses [`style.css`](style.css) for custom styles and [`bootstrap.min.css`](bootstrap.min.css) for layout and components.
+- The background image [`todoimg.jpg`](todoimg.jpg) is used for visual enhancement.
 
 ## License
 
